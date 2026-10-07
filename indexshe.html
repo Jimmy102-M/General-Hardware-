@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GENERAL HARDWARE STORE | Build • Renovate • Improve</title>
+
+<style>
+:root{
+  --dark:#071019;
+  --dark2:#101a24;
+  --yellow:#ffc400;
+  --yellow2:#ffae00;
+  --light:#f4f6f8;
+  --text:#111827;
+  --muted:#64748b;
+  --green:#19b957;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--text)}
+a{text-decoration:none;color:inherit}
+button{font:inherit}
+
+.topbar{
+  background:#050b11;color:#fff;padding:10px 5%;
+  display:flex;justify-content:space-between;gap:20px;font-size:14px
+}
+.topbar span{margin-right:25px}
+.topbar b{color:var(--yellow)}
+
+header{
+  background:var(--dark);color:#fff;position:sticky;top:0;z-index:1000;
+  box-shadow:0 3px 18px #0005
+}
+.nav{
+  max-width:1250px;margin:auto;padding:12px 20px;
+  display:flex;align-items:center;gap:25px
+}
+.logo{
+  display:flex;align-items:center;gap:10px;min-width:320px
+}
+.logo-mark{width:62px;height:62px}
+.logo-name{line-height:.9}
+.logo-name strong{font-size:28px;display:block;letter-spacing:-1px}
+.logo-name span{color:var(--yellow);font-size:17px;font-weight:800;letter-spacing:1px}
+.logo-tag{display:block;font-size:9px;letter-spacing:3px;margin-top:7px;color:#eee}
+
+.search{flex:1;display:flex;height:46px}
+.search input{flex:1;border:0;padding:0 18px;font-size:15px;border-radius:7px 0 0 7px;outline:0}
+.search button{width:58px;border:0;background:var(--yellow);border-radius:0 7px 7px 0;cursor:pointer;font-size:20px}
+.cart-btn{
+  background:var(--yellow);border:0;border-radius:7px;padding:13px 18px;
+  font-weight:800;cursor:pointer;white-space:nowrap
+}
+.menu{
+  max-width:1250px;margin:auto;padding:0 20px 11px;
+  display:flex;gap:10px
+}
+.menu a{padding:10px 18px;border-radius:6px;font-weight:700}
+.menu a:hover,.menu a.active{background:var(--yellow);color:#111}
+
+.hero{
+  min-height:475px;color:#fff;position:relative;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(4,10,16,.95) 0%,rgba(4,10,16,.78) 42%,rgba(4,10,16,.18) 100%),
+    url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=85") center/cover;
+}
+.hero-inner{max-width:1250px;margin:auto;padding:70px 20px}
+.hero-logo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.hero h1{font-size:52px;line-height:1.02;max-width:650px}
+.hero h1 span{color:var(--yellow)}
+.hero p{font-size:20px;line-height:1.5;max-width:650px;margin:22px 0}
+.hero-features{display:flex;flex-wrap:wrap;gap:18px;margin:25px 0}
+.hero-features div{font-weight:700}
+.btn{
+  display:inline-block;background:var(--yellow);color:#111;padding:14px 24px;
+  border-radius:7px;font-weight:800;border:0;cursor:pointer
+}
+.btn:hover{background:var(--yellow2)}
+
+.section{max-width:1250px;margin:auto;padding:55px 20px}
+.title{text-align:center;font-size:32px;margin-bottom:8px}
+.subtitle{text-align:center;color:var(--muted);margin-bottom:30px}
+
+.categories{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:15px
+}
+.category{
+  background:#000;color:#fff;font-family:"Arial Black",Arial,sans-serif;font-weight:900;
+  border-radius:10px;padding:18px;text-align:center;
+  box-shadow:0 3px 12px #00000012;transition:.2s
+}
+.category:hover{transform:translateY(-4px)}
+
+.search-wide{max-width:650px;margin:0 auto 30px;display:flex}
+.search-wide input{flex:1;padding:14px;border:1px solid #ddd;border-radius:7px 0 0 7px}
+.search-wide button{background:var(--yellow);border:0;padding:0 22px;border-radius:0 7px 7px 0}
+
+.products{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px
+}
+.product{
+  background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 3px 13px #00000012
+}
+.product img{width:100%;height:190px;object-fit:cover}
+.product-info{padding:15px}
+.product h3{margin-bottom:7px}
+.product p{color:var(--muted);font-size:14px;line-height:1.4;min-height:40px}
+.price{font-size:19px;font-weight:900;margin:12px 0}
+.variant-prices{font-size:13px;line-height:1.5;margin:12px 0}
+.variant-select{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;margin-bottom:12px}
+.actions{display:flex;gap:7px}
+.actions button{flex:1;padding:10px;border:0;border-radius:6px;cursor:pointer;font-weight:800}
+.add{background:var(--yellow)}
+.wa{background:var(--green);color:#fff}
+
+.about{
+  background:var(--dark);color:#fff
+}
+.about-grid{
+  max-width:1250px;margin:auto;padding:65px 20px;
+  display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center
+}
+.about p{line-height:1.8;color:#d5dbe1;margin:15px 0}
+
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:25px
+}
+.card{background:#fff;padding:28px;border-radius:10px;box-shadow:0 3px 14px #0001}
+#contact .card a:not(.btn){color:#0759c7;text-decoration:underline;text-underline-offset:2px}
+#contact .card a:not(.btn):hover{color:#034293}
+#contact .card a:not(.btn):focus-visible{outline:2px solid currentColor;outline-offset:2px}
+input,textarea{width:100%;padding:13px;border:1px solid #ddd;border-radius:6px;margin-bottom:12px}
+textarea{height:130px;resize:none}
+
+footer{background:#050b11;color:#fff;text-align:center;padding:35px 20px}
+footer strong{color:var(--yellow)}
+footer p{color:#b9c1c9;margin-top:10px}
+
+.cart-panel{
+  position:fixed;right:-420px;top:0;width:400px;max-width:92%;height:100vh;
+  background:#fff;z-index:2000;padding:25px;box-shadow:-5px 0 20px #0003;
+  transition:.25s;overflow:auto
+}
+.cart-panel.open{right:0}
+.cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.close{font-size:30px;cursor:pointer}
+.cart-item{padding:13px 0;border-bottom:1px solid #ddd}
+.cart-total{font-size:21px;font-weight:900;margin:20px 0}
+
+@media(max-width:900px){
+  .topbar{display:none}
+  .nav{flex-wrap:wrap}
+  .logo{min-width:0;flex:1}
+  .logo-name strong{font-size:21px}
+  .logo-name span{font-size:13px}
+  .search{order:3;flex-basis:100%}
+  .menu{overflow:auto}
+  .hero h1{font-size:40px}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+}
+@media(max-width:550px){
+  .hero-inner{padding:50px 18px}
+  .hero h1{font-size:34px}
+  .logo-mark{width:50px;height:50px}
+  .logo-tag{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div><span>📍 <b>Westlands, Nairobi</b></span><span>🚚 FREE DELIVERY COUNTRYWIDE</span></div>
+  <div><span>☎ <a href="tel:+254780106074">0780106074</a></span><span>🟢 WhatsApp: <a href="https://wa.me/254780106074" target="_blank" rel="noopener">0780106074</a> / <a href="https://wa.me/254735226646" target="_blank" rel="noopener">0735226646</a></span></div>
+</div>
+
+<header>
+  <div class="nav">
+    <a href="#home" class="logo" aria-label="General Hardware Store">
+      <!-- Designed inline logo: house + hammer + GENERAL HARDWARE STORE -->
+      <svg class="logo-mark" viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M8 53L50 15l42 38v37H8z" fill="#ffc400"/>
+        <path d="M25 53l25-22 25 22v28H25z" fill="#071019"/>
+        <path d="M34 58h10v10H34zM56 58h10v10H56zM45 72h10v9H45z" fill="#ffc400"/>
+        <path d="M65 13l22 22-8 8-22-22z" fill="#fff"/>
+        <path d="M53 16l14-5 18 18-7 7z" fill="#ffc400"/>
+      </svg>
+      <div class="logo-name">
+        <strong>GENERAL</strong>
+        <span>HARDWARE STORE</span>
+        <small class="logo-tag">BUILD • RENOVATE • IMPROVE</small>
+      </div>
+    </a>
+
+    <div class="search">
+      <input id="topSearch" type="text" placeholder="Search for products..." onkeyup="filterProducts(this.value)">
+      <button onclick="filterProducts(document.getElementById('topSearch').value)">🔎</button>
+    </div>
+
+    <button class="cart-btn" onclick="openCart()">🛒 Cart (<span id="count">0</span>)</button>
+  </div>
+
+  <div class="menu">
+    <a class="active" href="#home">🏠 Home</a>
+    <a href="#products">Products</a>
+    <a href="#categories">Categories</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact Us</a>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-logo">
+      <svg width="78" height="78" viewBox="0 0 100 100">
+        <path d="M8 53L50 15l42 38v37H8z" fill="#ffc400"/>
+        <path d="M25 53l25-22 25 22v28H25z" fill="#071019"/>
+        <path d="M34 58h10v10H34zM56 58h10v10H56zM45 72h10v9H45z" fill="#ffc400"/>
+        <path d="M65 13l22 22-8 8-22-22z" fill="#fff"/>
+        <path d="M53 16l14-5 18 18-7 7z" fill="#ffc400"/>
+      </svg>
+      <div>
+        <div style="font-size:18px;font-weight:800;letter-spacing:2px">YOUR TRUSTED</div>
+        <div style="color:#ffc400;font-size:18px;font-weight:900">BUILDING PARTNER</div>
+      </div>
+    </div>
+
+    <h1>GENERAL <span>HARDWARE STORE</span></h1>
+    <p>Your one-stop shop for quality building materials and hardware products.</p>
+
+    <div class="hero-features">
+      <div>🛡️ Quality Products</div>
+      <div>🏷️ Competitive Prices</div>
+      <div>🚚 Fast Delivery</div>
+      <div>🎧 Expert Support</div>
+    </div>
+
+    <a href="#products" class="btn">Shop Now →</a>
+  </div>
+</section>
+
+<section class="section" id="categories">
+  <h2 class="title">Shop by Category</h2>
+  <p class="subtitle">Everything you need for construction, renovation and maintenance.</p>
+
+  <div class="categories">
+    <a class="category" href="#products" onclick="filterCategory('Roofing Sheets')"><b>Roofing Sheets</b></a>
+    <a class="category" href="#products" onclick="filterCategory('Cement')"><b>Cement</b></a>
+    <a class="category" href="#products" onclick="filterCategory('Steel & Rebar')"><b>Steel & Rebar</b></a>
+    <a class="category" href="#products" onclick="filterCategory('Fencing & Wire Mesh')"><b>Fencing & Wire Mesh</b></a>
+    <a class="category" href="#products" onclick="filterCategory('Nails & Fasteners')"><b>Nails & Fasteners</b></a>
+    <a class="category" href="#products" onclick="filterCategory('Tools & Accessories')"><b>Tools & Accessories</b></a>
+    <a class="category" href="#products" onclick="filterCategory('Plumbing Materials')"><b>Plumbing Materials</b></a>
+    <a class="category" href="#products" onclick="filterCategory('Paints & Chemicals')"><b>Paints & Chemicals</b></a>
+  </div>
+</section>
+
+<section class="section" id="products">
+  <h2 class="title">Featured Products</h2>
+  <p class="subtitle">Quality materials for homes, businesses and construction projects.</p>
+
+  <div class="search-wide">
+    <input id="productSearch" placeholder="Search products..." onkeyup="filterProducts(this.value)">
+    <button onclick="filterProducts(document.getElementById('productSearch').value)">Search</button>
+  </div>
+
+  <div class="products" id="productList"></div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-grid">
+    <div>
+      <h2 style="font-size:34px">GENERAL HARDWARE STORE</h2>
+      <p>We supply dependable building materials and hardware products for residential, commercial and industrial projects.</p>
+      <p>Our range includes roofing sheets, cement, reinforcement steel, fencing materials, nails, tools and other construction essentials.</p>
+      <a href="#contact" class="btn">Talk to Us</a>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=85" style="width:100%;border-radius:12px">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <h2 class="title">Contact General Hardware Store</h2>
+  <p class="subtitle">Ask for a quotation or place your order.</p>
+
+  <div class="contact-grid">
+    <div class="card">
+      <h3>Store Information</h3><br>
+      <p>📍 <a href="https://www.google.com/maps/search/?api=1&amp;query=General%20Hardware%20(K)%20Ltd%2C%20Westlands%2C%20The%20Center%20Point%2C%20Parklands%20Road%2C%20Nairobi" target="_blank" rel="noopener">General Hardware (K) Ltd, Westlands, The Center Point, Parklands Road, Nairobi</a></p><br>
+      <p>☎ <a href="tel:+254780106074">0780106074</a> | WhatsApp: <a href="https://wa.me/254780106074" target="_blank" rel="noopener">0780106074</a></p><br>
+      <p>💬 WhatsApp: <a href="https://wa.me/254735226646" target="_blank" rel="noopener">0735226646</a></p><br>
+      <p>✉ <a href="mailto:generalhardware005@gmail.com">generalhardware005@gmail.com</a></p><br>
+      <a class="btn" href="https://wa.me/254735226646" target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
+
+    <div class="card">
+      <h3>Send an Enquiry</h3><br>
+      <form id="enquiryForm" onsubmit="sendEnquiry(event)">
+        <input id="customerName" name="name" type="text" autocomplete="name" placeholder="Your Name" required>
+        <input id="customerPhone" name="phone" type="tel" autocomplete="tel" placeholder="Phone Number" required>
+        <textarea id="customerMessage" name="message" placeholder="What materials do you need?" required></textarea>
+        <button class="btn" type="submit">Send Enquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h2>GENERAL <strong>HARDWARE STORE</strong></h2>
+  <p>BUILD • RENOVATE • IMPROVE</p>
+  <p>© 2026 General Hardware Store. All Rights Reserved.</p>
+</footer>
+
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-head">
+    <h2>Your Cart</h2>
+    <span class="close" onclick="closeCart()">×</span>
+  </div>
+  <div id="cartItems">Your cart is empty.</div>
+  <div class="cart-total">Total: KSh <span id="total">0</span></div>
+  <button class="btn" style="width:100%" onclick="checkout()">Order on WhatsApp</button>
+</div>
+
+<script>
+const products = [
+  {
+    name:"Corrugated Roofing Sheets",
+    category:"Roofing Sheets",
+    price:200,
+    unit:"/meter",
+    image:"WhatsApp%20Image%202026-10-07%20at%207.08.30%20PM.jpeg",
+    desc:"Durable corrugated metal roofing sheets."
+  },
+  {
+    name:"Ordinary Reject",
+    category:"Roofing Sheets",
+    price:150,
+    unit:"/meter",
+    image:"WhatsApp%20Image%202026-10-07%20at%207.08.27%20PM%20(1).jpeg",
+    desc:"Ordinary-grade corrugated roofing sheets."
+  },
+  {
+    name:"DUMUZA Ordinary Gauge 30 Mabati",
+    category:"Roofing Sheets",
+    variantLabel:"length",
+    variants:[
+      {size:"1m",price:300},
+      {size:"2m",price:600},
+      {size:"2.5m",price:750},
+      {size:"3m",price:900}
+    ],
+    image:"WhatsApp%20Image%202026-10-07%20at%207.09.57%20PM.jpeg",
+    desc:"DUMUZA Ordinary Gauge 30 corrugated roofing sheets."
+  },
+  {
+    name:"Water Tanks",
+    category:"Plumbing Materials",
+    variantLabel:"capacity",
+    variants:[
+      {size:"1000L",price:4500},
+      {size:"2000L",price:10500},
+      {size:"3000L",price:14500},
+      {size:"4000L",price:18500},
+      {size:"8000L",price:32500},
+      {size:"10000L",price:45000},
+      {size:"20000L",price:147500},
+      {size:"24000L",price:192500}
+    ],
+    image:"WhatsApp%20Image%202026-10-07%20at%207.08.30%20PM%20(1).jpeg",
+    desc:"Durable water storage tanks in multiple capacities."
+  },
+  {
+    name:"Chain-Link Fence",
+    category:"Fencing & Wire Mesh",
+    variants:[
+      {size:"4ft",price:2000},
+      {size:"5ft",price:2300},
+      {size:"6ft",price:2800},
+      {size:"7ft",price:3100},
+      {size:"8ft",price:3500}
+    ],
+    image:"WhatsApp%20Image%202026-10-07%20at%207.08.28%20PM%20(2).jpeg",
+    desc:"Galvanized chain-link fencing mesh."
+  },
+  {
+    name:"Simba Cement",
+    category:"Cement",
+    variantLabel:"type",
+    variants:[
+      {size:"32.5R",price:550},
+      {size:"Power 42.5N",price:650}
+    ],
+    image:"WhatsApp%20Image%202026-10-07%20at%207.08.29%20PM%20(3).jpeg",
+    desc:"Available as Simba Cement 32.5R and Simba Cement Power 42.5N."
+  },
+  {
+    name:"R-BARS",
+    category:"Steel & Rebar",
+    variantLabel:"bar size",
+    variants:[
+      {size:"R16",price:2300},
+      {size:"R12",price:1350},
+      {size:"R10",price:850},
+      {size:"R8",price:450},
+      {size:"R6",price:210}
+    ],
+    image:"WhatsApp%20Image%202026-10-07%20at%207.08.29%20PM%20(1).jpeg",
+    desc:"Deformed reinforcement bars available in multiple sizes."
+  },
+  {
+    name:"Roofing Nails",
+    category:"Nails & Fasteners",
+    price:0,
+    image:"R.jfif",
+    desc:"Umbrella-head nails for roofing sheets."
+  },
+  {
+    name:"Color Umbrella Nail Head",
+    category:"Nails & Fasteners",
+    price:0,
+    image:"WhatsApp%20Image%202026-10-07%20at%207.08.27%20PM%20(3).jpeg",
+    desc:"Color-coated umbrella-head nails for roofing sheets."
+  },
+  {
+    name:"Welded Wire Mesh",
+    category:"Fencing & Wire Mesh",
+    price:0,
+    image:"https://images.unsplash.com/photo-1517646287270-a5a9ca8d0e3d?auto=format&fit=crop&w=700&q=80",
+    desc:"Galvanized welded wire mesh."
+  },
+  {
+    name:"Binding Wire",
+    category:"Steel & Rebar",
+    price:2780,
+    image:"download.webp",
+    desc:"Binding wire for reinforcement work."
+  },
+  {
+    name:"Hoop Iron",
+    category:"Nails & Fasteners",
+    price:3000,
+    image:"download%20(1).webp",
+    desc:"Hoop iron coil for construction and reinforcement work."
+  },
+  {
+    name:"General Hardware Tools",
+    category:"Tools & Accessories",
+    price:0,
+    image:"https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=700&q=80",
+    desc:"Essential tools for construction and maintenance."
+  }
+];
+
+let cart=[];
+
+function renderProducts(list=products){
+  const box=document.getElementById("productList");
+  if(!list.length){
+    box.innerHTML='<p class="subtitle">No products available in this category yet.</p>';
+    return;
+  }
+  box.innerHTML=list.map(p=>{
+    const productIndex=products.indexOf(p);
+    const priceMarkup=p.variants
+      ? `<div class="variant-prices">${p.variants.map(variant=>`${variant.size}: KSh ${variant.price.toLocaleString()}`).join(" · ")}</div>
+        <label for="variant-${productIndex}">Choose ${p.variantLabel || "height"}</label>
+        <select class="variant-select" id="variant-${productIndex}" aria-label="${p.name} ${p.variantLabel || "height"}">
+          <option value="" selected>Choose ${p.variantLabel || "height"}</option>
+          ${p.variants.map((variant,index)=>`<option value="${index}">${variant.size} - KSh ${variant.price.toLocaleString()}</option>`).join("")}
+        </select>`
+      : `<div class="price">${p.price ? "KSh "+p.price.toLocaleString()+(p.unit||"") : "Get Quote"}</div>`;
+    return `
+    <div class="product">
+      <img src="${p.image}" alt="${p.name}">
+      <div class="product-info">
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+        ${priceMarkup}
+        <div class="actions">
+          <button class="add" onclick="addToCart(${productIndex})">🛒 Add to Cart</button>
+          <button class="wa" onclick="whatsapp(${productIndex})">WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  `;
+  }).join("");
+}
+
+function filterProducts(value){
+  const q=value.toLowerCase().trim();
+  document.getElementById("topSearch").value=value;
+  document.getElementById("productSearch").value=value;
+  renderProducts(products.filter(p=>
+    p.name.toLowerCase().includes(q) ||
+    p.desc.toLowerCase().includes(q)
+  ));
+}
+
+function filterCategory(category){
+  document.getElementById("topSearch").value="";
+  document.getElementById("productSearch").value="";
+  renderProducts(products.filter(p=>p.category===category));
+}
+
+function addToCart(i){
+  const product=products[i];
+  if(product.variants){
+    const selection=document.getElementById(`variant-${i}`).value;
+    if(selection===""){alert(`Please choose a ${product.variantLabel || "height"}.`);return}
+    const selectedVariant=product.variants[Number(selection)];
+    cart.push({...product,selectedVariant,price:selectedVariant.price});
+  }else{
+    cart.push(product);
+  }
+  updateCart();
+  document.getElementById("cartPanel").classList.add("open");
+}
+
+function updateCart(){
+  document.getElementById("count").textContent=cart.length;
+  const box=document.getElementById("cartItems");
+  let total=0;
+  if(!cart.length){
+    box.innerHTML="Your cart is empty.";
+  }else{
+    box.innerHTML=cart.map((p,i)=>{
+      total+=p.price;
+      const itemName=p.selectedVariant ? `${p.name} (${p.selectedVariant.size})` : p.name;
+      return `<div class="cart-item"><b>${itemName}</b><br>${p.price ? "KSh "+p.price.toLocaleString()+(p.unit||"") : "Get Quote"}
+      <br><button onclick="removeItem(${i})" style="margin-top:7px;border:0;background:#ef4444;color:#fff;padding:6px 10px;border-radius:4px;cursor:pointer">Remove</button></div>`;
+    }).join("");
+  }
+  document.getElementById("total").textContent=total.toLocaleString();
+}
+
+function removeItem(i){
+  cart.splice(i,1);
+  updateCart();
+}
+
+function openCart(){document.getElementById("cartPanel").classList.add("open")}
+function closeCart(){document.getElementById("cartPanel").classList.remove("open")}
+
+function whatsapp(i){
+  const product=products[i];
+  let itemName=product.name;
+  if(product.variants){
+    const selection=document.getElementById(`variant-${i}`).value;
+    if(selection===""){alert(`Please choose a ${product.variantLabel || "height"}.`);return}
+    const selectedVariant=product.variants[Number(selection)];
+    itemName+=` (${selectedVariant.size} - KSh ${selectedVariant.price.toLocaleString()})`;
+  }
+  const msg=encodeURIComponent("Hello General Hardware Store, I would like to enquire/order: "+itemName);
+  window.open("https://wa.me/254735226646?text="+msg,"_blank");
+}
+
+function checkout(){
+  if(!cart.length){alert("Your cart is empty.");return}
+  const list=cart.map(p=>"- "+p.name+(p.selectedVariant?" ("+p.selectedVariant.size+")":"")+(p.price?" - KSh "+p.price.toLocaleString()+(p.unit||""):" - Get Quote")).join("\n");
+  const msg=encodeURIComponent("Hello General Hardware Store,\n\nI would like to order:\n"+list+"\n\nPlease confirm availability and delivery.");
+  window.open("https://wa.me/254735226646?text="+msg,"_blank");
+}
+
+function sendEnquiry(event){
+  event.preventDefault();
+  const name=document.getElementById("customerName").value.trim();
+  const phone=document.getElementById("customerPhone").value.trim();
+  const message=document.getElementById("customerMessage").value.trim();
+  const text=encodeURIComponent(`Hello General Hardware Store,\n\nName: ${name}\nPhone: ${phone}\nEnquiry: ${message}`);
+  window.open("https://wa.me/254735226646?text="+text,"_blank");
+}
+
+renderProducts();
+</script>
+
+</body>
+</html>
