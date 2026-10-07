@@ -237,7 +237,10 @@ footer p{color:#b9c1c9;margin-top:10px}
       <div>🎧 Expert Support</div>
     </div>
 
-    <a href="#products" class="btn">Shop Now →</a>
+    <div class="hero-actions">
+      <a href="#products" class="btn">Shop Now →</a>
+      <button class="btn" type="button" onclick="shareWebsite()">Share Store</button>
+    </div>
   </div>
 </section>
 
@@ -563,6 +566,28 @@ function checkout(){
   const list=cart.map(p=>"- "+p.name+(p.selectedVariant?" ("+p.selectedVariant.size+")":"")+(p.price?" - KSh "+p.price.toLocaleString()+(p.unit||""):" - Get Quote")).join("\n");
   const msg=encodeURIComponent("Hello General Hardware Store,\n\nI would like to order:\n"+list+"\n\nPlease confirm availability and delivery.");
   window.open("https://wa.me/254735226646?text="+msg,"_blank");
+}
+
+async function shareWebsite(){
+  const shareData={
+    title:"General Hardware Store",
+    text:"Shop building materials and hardware from General Hardware (K) Ltd.",
+    url:"https://generalhardware-domain.com/"
+  };
+  if(navigator.share){
+    try{
+      await navigator.share(shareData);
+      return;
+    }catch(error){
+      if(error.name==="AbortError")return;
+    }
+  }
+  try{
+    await navigator.clipboard.writeText(shareData.url);
+    alert("Website link copied to clipboard.");
+  }catch{
+    window.prompt("Copy this website link:",shareData.url);
+  }
 }
 
 function sendEnquiry(event){
