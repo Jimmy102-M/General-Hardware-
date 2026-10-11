@@ -1,0 +1,23 @@
+{
+  "name": "primary",
+  "version": "1.0.0",
+  "description": "A static storefront for General Hardware (K) Ltd, Nairobi. The site lists building materials, supports product search and category filtering, shows variant pricing, and prepares WhatsApp enquiries and orders.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jimmy102-M/General-Hardware-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jimmy102-M/General-Hardware-/issues"
+  },
+  "homepage": "https://github.com/Jimmy102-M/General-Hardware-#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
